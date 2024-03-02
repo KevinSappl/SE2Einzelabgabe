@@ -93,8 +93,8 @@
 
     <TextView
         android:id="@+id/quersummeOutput"
-        android:layout_width="205dp"
-        android:layout_height="26dp"
+        android:layout_width="372dp"
+        android:layout_height="55dp"
         android:layout_marginBottom="18dp"
         android:text="..."
         app:layout_constraintBottom_toBottomOf="parent"

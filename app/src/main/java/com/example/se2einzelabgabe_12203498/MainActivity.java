@@ -86,8 +86,10 @@ public class MainActivity extends AppCompatActivity {
                 zahl = zahl / 10;
             }
 
+            String binaryString = Integer.toBinaryString(summe);
+
             TextView quersummeOutput = findViewById(R.id.quersummeOutput);
-            quersummeOutput.setText("Quersumme von " + matNrSting + " ist " + summe);
+            quersummeOutput.setText("Quersumme von " + matNrSting + " ist " + summe + ". Binärzahl: " + binaryString);
         } catch (Exception ex) {
             TextView quersummeOutput = findViewById(R.id.quersummeOutput);
             quersummeOutput.setText("Ungültige Eingabe");
