@@ -1,5 +1,6 @@
 package com.example.se2einzelabgabe_12203498;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -68,5 +69,28 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         }).start();
+    }
+
+
+    @SuppressLint("SetTextI18n")
+    public void berechneQuersumme(View view) {
+        int summe = 0;
+
+        try {
+            final EditText matNrInput = findViewById(R.id.matNrInput);
+            String matNrSting = matNrInput.getText().toString();
+            int zahl = Integer.parseInt(matNrSting);
+
+            while (zahl != 0) {
+                summe = summe + (zahl % 10);
+                zahl = zahl / 10;
+            }
+
+            TextView quersummeOutput = findViewById(R.id.quersummeOutput);
+            quersummeOutput.setText("Quersumme von " + matNrSting + " ist " + summe);
+        } catch (Exception ex) {
+            TextView quersummeOutput = findViewById(R.id.quersummeOutput);
+            quersummeOutput.setText("Ungültige Eingabe");
+        }
     }
 }
