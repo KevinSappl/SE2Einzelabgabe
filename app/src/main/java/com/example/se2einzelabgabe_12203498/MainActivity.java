@@ -14,18 +14,16 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.SocketTimeoutException;
 
 public class MainActivity extends AppCompatActivity {
     private Socket clientSocket;
     private PrintWriter out;
     private BufferedReader in;
-    private String ip = "se2-submission.aau.at";
-    private int port = 20080;
+    private final String ip = "se2-submission.aau.at";
+    private final int port = 20080;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +44,12 @@ public class MainActivity extends AppCompatActivity {
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
     }
 
+    public void stopConnection() throws IOException {
+        in.close();
+        out.close();
+        clientSocket.close();
+    }
+
     public void sendMatNrToServer(View view) {
         new Thread(() -> {
             try {
@@ -62,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
                     TextView serverOutput = findViewById(R.id.serverOutput);
                     serverOutput.setText(message);
                 });
+
+                stopConnection();
             } catch (IOException ex) {
                 runOnUiThread(() -> {
                     TextView serverOutput = findViewById(R.id.serverOutput);
